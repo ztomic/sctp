@@ -20,7 +20,7 @@
 		<junit.version>4.1</junit.version>
 		<restcomm.tools.mavenplugin.eclipse.version>1.0.1.FINAL</restcomm.tools.mavenplugin.eclipse.version>
 
-		<revision>2.0.1-NTH</revision>
+		<revision>2.2.0-NTH-SNAPSHOT</revision>
 	</properties>
 	<modules>
 		<module>sctp-api</module>
