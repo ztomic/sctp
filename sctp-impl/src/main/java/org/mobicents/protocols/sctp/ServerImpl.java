@@ -34,12 +34,13 @@ import javolution.util.FastList;
 import javolution.xml.XMLFormat;
 import javolution.xml.stream.XMLStreamException;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.Server;
 
 import com.sun.nio.sctp.SctpServerChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author amit bhayani
@@ -48,7 +49,7 @@ import com.sun.nio.sctp.SctpServerChannel;
  */
 public class ServerImpl implements Server {
 
-	private static final Logger logger = Logger.getLogger(ServerImpl.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(ServerImpl.class);
 
 	private static final String COMMA = ", ";
 	private static final String NAME = "name";

@@ -21,15 +21,14 @@
  */
 package org.mobicents.protocols.sctp;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
-
 import com.sun.nio.sctp.AbstractNotificationHandler;
 import com.sun.nio.sctp.AssociationChangeNotification;
 import com.sun.nio.sctp.HandlerResult;
 import com.sun.nio.sctp.PeerAddressChangeNotification;
 import com.sun.nio.sctp.SendFailedNotification;
 import com.sun.nio.sctp.ShutdownNotification;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * // TODO Override all methods? // TODO Add Association name for logging
@@ -39,7 +38,7 @@ import com.sun.nio.sctp.ShutdownNotification;
  */
 class AssociationHandler extends AbstractNotificationHandler<AssociationImpl> {
 
-	private static final Logger logger = Logger.getLogger(AssociationHandler.class);
+	private static final Logger logger = LoggerFactory.getLogger(AssociationHandler.class);
 	
 	//Default value is 1 for TCP
 	private volatile int maxInboundStreams = 1;
@@ -165,7 +164,7 @@ class AssociationHandler extends AbstractNotificationHandler<AssociationImpl> {
 	@Override
 	public  HandlerResult handleNotification(PeerAddressChangeNotification notification, AssociationImpl associtaion) {
 		//associtaion.peerSocketAddress = notification.address();
-		if(logger.isEnabledFor(Priority.WARN)){
+		if(logger.isWarnEnabled()){
 			logger.warn(String.format("Peer Address changed to=%s for Association=%s", notification.address(), associtaion.getName()));
 		}
 		return HandlerResult.CONTINUE;

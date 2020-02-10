@@ -40,10 +40,11 @@ import javolution.util.FastList;
 import javolution.xml.XMLFormat;
 import javolution.xml.stream.XMLStreamException;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.Server;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:amit.bhayani@telestax.com">Amit Bhayani</a>
@@ -51,7 +52,7 @@ import org.mobicents.protocols.api.Server;
  */
 public class NettyServerImpl implements Server {
 
-    private static final Logger logger = Logger.getLogger(NettyServerImpl.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(NettyServerImpl.class);
 
     private static final String COMMA = ", ";
     private static final String NAME = "name";

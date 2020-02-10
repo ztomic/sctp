@@ -39,7 +39,6 @@ import java.util.Set;
 import javolution.util.FastList;
 import javolution.util.FastMap;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.Server;
@@ -48,6 +47,8 @@ import com.sun.nio.sctp.AssociationChangeNotification;
 import com.sun.nio.sctp.AssociationChangeNotification.AssocChangeEvent;
 import com.sun.nio.sctp.SctpChannel;
 import com.sun.nio.sctp.SctpServerChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author amit bhayani
@@ -55,7 +56,7 @@ import com.sun.nio.sctp.SctpServerChannel;
  */
 public class SelectorThread implements Runnable {
 
-	protected static final Logger logger = Logger.getLogger(SelectorThread.class);
+	protected static final Logger logger = LoggerFactory.getLogger(SelectorThread.class);
 
 	protected Selector selector;
 

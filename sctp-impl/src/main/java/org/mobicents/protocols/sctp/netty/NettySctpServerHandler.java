@@ -27,10 +27,11 @@ import java.net.InetSocketAddress;
 
 import javolution.util.FastMap;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationType;
 import org.mobicents.protocols.api.IpChannelType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:amit.bhayani@telestax.com">Amit Bhayani</a>
@@ -38,7 +39,7 @@ import org.mobicents.protocols.api.IpChannelType;
  */
 public class NettySctpServerHandler extends NettySctpChannelInboundHandlerAdapter {
 
-    Logger logger = Logger.getLogger(NettySctpServerHandler.class);
+    Logger logger = LoggerFactory.getLogger(NettySctpServerHandler.class);
 
     private final NettyServerImpl serverImpl;
     private final NettySctpManagementImpl managementImpl;

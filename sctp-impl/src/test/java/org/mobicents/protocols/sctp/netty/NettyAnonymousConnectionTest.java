@@ -22,17 +22,18 @@
 
 package org.mobicents.protocols.sctp.netty;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import io.netty.buffer.Unpooled;
 
 import java.util.Arrays;
 
 import javolution.util.FastList;
-
-import org.apache.log4j.Logger;
+;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
@@ -40,9 +41,8 @@ import org.mobicents.protocols.api.PayloadData;
 import org.mobicents.protocols.api.Server;
 import org.mobicents.protocols.api.ServerListener;
 import org.mobicents.protocols.sctp.SctpTransferTest;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 
@@ -88,11 +88,11 @@ public class NettyAnonymousConnectionTest implements ServerListener {
     private AssociationData assDataClt3; 
     private FastList<AssociationData> assDataSrv = new FastList<AssociationData>(); 
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() throws Exception {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() throws Exception {
     }
 
@@ -140,7 +140,11 @@ public class NettyAnonymousConnectionTest implements ServerListener {
      * Simple test that creates Client and Server Association, exchanges data
      * and brings down association. Finally removes the Associations and Server
      */
-    @Test(groups = { "functional", "sctp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("sctp")
+    })
     public void testAnonymousSctp() throws Exception {
 
         if (SctpTransferTest.checkSctpEnabled())
@@ -151,7 +155,11 @@ public class NettyAnonymousConnectionTest implements ServerListener {
      * Simple test that creates Client and Server Association, exchanges data
      * and brings down association. Finally removes the Associations and Server
      */
-    @Test(groups = { "functional", "tcp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("tcp")
+    })
     public void testAnonymousTcp() throws Exception {
 
         // BasicConfigurator.configure();
@@ -376,7 +384,7 @@ public class NettyAnonymousConnectionTest implements ServerListener {
 
     private class ServerAssociationListener implements AssociationListener {
 
-        private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+        private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
         AssociationData assData;
 
         ServerAssociationListener(AssociationData assData) {
@@ -436,7 +444,7 @@ public class NettyAnonymousConnectionTest implements ServerListener {
             this.assData = assData;
         }
 
-        private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+        private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 
         @Override
         public void onCommunicationUp(Association association, int maxInboundStreams, int maxOutboundStreams) {

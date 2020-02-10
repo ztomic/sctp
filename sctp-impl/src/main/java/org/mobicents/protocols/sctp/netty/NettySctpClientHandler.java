@@ -24,8 +24,9 @@ import io.netty.channel.ChannelHandlerContext;
 
 import java.net.InetSocketAddress;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.IpChannelType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Handler implementation for the SCTP echo client. It initiates the ping-pong traffic between the echo client and server by
@@ -36,7 +37,7 @@ import org.mobicents.protocols.api.IpChannelType;
  */
 public class NettySctpClientHandler extends NettySctpChannelInboundHandlerAdapter {
 
-    private final Logger logger = Logger.getLogger(NettySctpClientHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(NettySctpClientHandler.class);
 
     /**
      * Creates a client-side handler.

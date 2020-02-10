@@ -43,7 +43,6 @@ import javolution.util.FastList;
 import javolution.xml.XMLFormat;
 import javolution.xml.stream.XMLStreamException;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.AssociationType;
@@ -53,6 +52,8 @@ import org.mobicents.protocols.api.PayloadData;
 
 import com.sun.nio.sctp.MessageInfo;
 import com.sun.nio.sctp.SctpChannel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author amit bhayani
@@ -60,7 +61,7 @@ import com.sun.nio.sctp.SctpChannel;
  */
 public class AssociationImpl implements Association {
 
-	protected static final Logger logger = Logger.getLogger(AssociationImpl.class.getName());
+	protected static final Logger logger = LoggerFactory.getLogger(AssociationImpl.class);
 
 	private static final String NAME = "name";
 	private static final String SERVER_NAME = "serverName";

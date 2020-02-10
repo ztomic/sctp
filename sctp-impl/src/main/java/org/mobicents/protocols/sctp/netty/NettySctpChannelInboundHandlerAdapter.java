@@ -28,8 +28,6 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.sctp.SctpMessage;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.Priority;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
 
@@ -37,6 +35,8 @@ import com.sun.nio.sctp.AssociationChangeNotification;
 import com.sun.nio.sctp.PeerAddressChangeNotification;
 import com.sun.nio.sctp.SendFailedNotification;
 import com.sun.nio.sctp.ShutdownNotification;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:amit.bhayani@telestax.com">Amit Bhayani</a>
@@ -44,7 +44,7 @@ import com.sun.nio.sctp.ShutdownNotification;
  */
 public class NettySctpChannelInboundHandlerAdapter extends ChannelInboundHandlerAdapter {
 
-    Logger logger = Logger.getLogger(NettySctpChannelInboundHandlerAdapter.class);
+    Logger logger = LoggerFactory.getLogger(NettySctpChannelInboundHandlerAdapter.class);
 
     // Default value is 1 for TCP
     private volatile int maxInboundStreams = 1;
@@ -143,7 +143,7 @@ public class NettySctpChannelInboundHandlerAdapter extends ChannelInboundHandler
         if (evt instanceof PeerAddressChangeNotification) {
             PeerAddressChangeNotification notification = (PeerAddressChangeNotification) evt;
 
-            if (logger.isEnabledFor(Priority.WARN)) {
+            if (logger.isWarnEnabled()) {
                 logger.warn(String.format("Peer Address changed to=%s for Association=%s", notification.address(),
                         association.getName()));
             }

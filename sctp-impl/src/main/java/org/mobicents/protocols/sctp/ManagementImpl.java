@@ -45,7 +45,6 @@ import javolution.xml.XMLObjectReader;
 import javolution.xml.XMLObjectWriter;
 import javolution.xml.stream.XMLStreamException;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationType;
 import org.mobicents.protocols.api.CongestionListener;
@@ -55,6 +54,8 @@ import org.mobicents.protocols.api.ManagementEventListener;
 import org.mobicents.protocols.api.Server;
 import org.mobicents.protocols.api.ServerListener;
 import org.mobicents.protocols.sctp.netty.NettySctpManagementImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author amit bhayani
@@ -62,7 +63,7 @@ import org.mobicents.protocols.sctp.netty.NettySctpManagementImpl;
  */
 public class ManagementImpl implements Management {
 
-	private static final Logger logger = Logger.getLogger(ManagementImpl.class);
+	protected final Logger logger = LoggerFactory.getLogger(getClass());
 
 	private static final String SCTP_PERSIST_DIR_KEY = "sctp.persist.dir";
 	private static final String USER_DIR_KEY = "user.dir";

@@ -1,6 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.4.RELEASE</version>
+		<relativePath/>
+	</parent>
+
 	<groupId>org.mobicents.protocols.sctp</groupId>
 	<artifactId>sctp-parent</artifactId>
 	<version>${revision}</version>
@@ -9,15 +16,10 @@
 
 
 	<properties>
-		<log4j.version>1.2.8</log4j.version>
+		<java.version>1.8</java.version>
+
 		<javolution.version>5.5.1</javolution.version>
 		<commons.version>1.0.0.CR1</commons.version>
-		<testng.version>6.2</testng.version>
-		<netty.version>4.0.33.Final</netty.version>
-		<compiler.plugin.version>2.0.2</compiler.plugin.version>
-		<compile.source>1.7</compile.source>
-
-		<junit.version>4.1</junit.version>
 		<restcomm.tools.mavenplugin.eclipse.version>1.0.1.FINAL</restcomm.tools.mavenplugin.eclipse.version>
 
 		<revision>2.2.0-NTH-SNAPSHOT</revision>
@@ -32,17 +34,6 @@
 				<groupId>org.mobicents.commons</groupId>
 				<artifactId>commons</artifactId>
 				<version>${commons.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>${log4j.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>${junit.version}</version>
-				<scope>provided</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -182,12 +173,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${compiler.plugin.version}</version>
-				<configuration>
-					<source>${compile.source}</source>
-					<target>${compile.source}</target>
-					<debug>${compile.debug}</debug>
-				</configuration>
 			</plugin>
 
 			<plugin>

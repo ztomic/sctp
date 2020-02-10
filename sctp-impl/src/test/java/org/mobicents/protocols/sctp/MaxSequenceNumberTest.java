@@ -21,21 +21,24 @@
  */
 package org.mobicents.protocols.sctp;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+
 import io.netty.buffer.Unpooled;
 
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sun.nio.sctp.SctpChannel;
 
@@ -45,7 +48,7 @@ import com.sun.nio.sctp.SctpChannel;
  */
 public class MaxSequenceNumberTest {
 
-	public static final Logger logger = Logger.getLogger(MaxSequenceNumberTest.class);
+	public static final Logger logger = LoggerFactory.getLogger(MaxSequenceNumberTest.class);
 
 	private static final String SERVER_NAME = "testserver";
 	private static final String SERVER_HOST = "127.0.0.1";
@@ -79,11 +82,11 @@ public class MaxSequenceNumberTest {
 
 	private Semaphore semaphore = null;
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpClass() throws Exception {
 	}
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownClass() throws Exception {
 	}
 
@@ -128,7 +131,11 @@ public class MaxSequenceNumberTest {
 	 * registered for each client and server socket. In this case there
 	 * shouldn't be any packets dropped.
 	 */
-	@Test(groups = { "functional", "noAdditionOnOutBoundStream" })
+	@Test
+	@Tags({
+			@Tag("functional"),
+			@Tag("noAdditionOnOutBoundStream")
+	})
 	public void testNoAdditionOnOutBoundStream() throws Exception {
 
 		int additionOnMaxSeqno = 0;
@@ -187,7 +194,11 @@ public class MaxSequenceNumberTest {
 	 * registered for each client and server socket. In this case there since
 	 * sequence number is overshotting there will be drop in packets
 	 */
-	@Test(groups = { "functional", "additionOnOutBoundStream" })
+	@Test
+	@Tags({
+			@Tag("functional"),
+			@Tag("additionOnOutBoundStream")
+	})
 	public void testAdditionOnOutBoundStream() throws Exception {
 
 		int additionOnMaxSeqno = 2;
@@ -256,7 +267,7 @@ public class MaxSequenceNumberTest {
 
 	private class ClientAssociationListener implements AssociationListener {
 
-		private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 		private int additionOnMaxSeqno;
 		private int maxInboundStreams;
 		private int maxOutboundStreams;
@@ -368,7 +379,7 @@ public class MaxSequenceNumberTest {
 
 	private class ServerAssociationListener implements AssociationListener {
 
-		private final Logger logger = Logger.getLogger(ServerAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ServerAssociationListener.class);
 		private int maxInboundStreams;
 		private int maxOutboundStreams;
 

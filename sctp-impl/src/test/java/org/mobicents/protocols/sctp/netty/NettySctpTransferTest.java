@@ -20,17 +20,22 @@
 
 package org.mobicents.protocols.sctp.netty;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import io.netty.buffer.Unpooled;
 
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
-import org.testng.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sun.nio.sctp.SctpChannel;
 
@@ -75,11 +80,11 @@ public class NettySctpTransferTest {
 	private volatile int serverMaxInboundStreams = 0;
 	private volatile int serverMaxOutboundStreams = 0;
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpClass() throws Exception {
 	}
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownClass() throws Exception {
 	}
 
@@ -121,7 +126,11 @@ public class NettySctpTransferTest {
 	 * Simple test that creates Client and Server Association, exchanges data
 	 * and brings down association. Finally removes the Associations and Server
 	 */
-	@Test(groups = { "functional", "sctp" })
+	@Test
+	@Tags({
+			@Tag("functional"),
+			@Tag("sctš")
+	})
 	public void testDataTransferSctp() throws Exception {
 		if (NettySctpTransferTest.checkSctpEnabled())
 			this.testDataTransferByProtocol(IpChannelType.SCTP);
@@ -132,7 +141,11 @@ public class NettySctpTransferTest {
 	 * and brings down association. Finally removes the Associations and Server
 	 */
 	//TODO
-    @Test(groups = { "functional", "tcp" })
+    @Test
+	@Tags({
+			@Tag("functional"),
+			@Tag("tcp")
+	})
     public void testDataTransferTcp() throws Exception {
         this.testDataTransferByProtocol(IpChannelType.TCP);
     }
@@ -199,7 +212,7 @@ public class NettySctpTransferTest {
 
 	private class ClientAssociationListener implements AssociationListener {
 		
-		private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 
 		/*
 		 * (non-Javadoc)
@@ -290,7 +303,7 @@ public class NettySctpTransferTest {
 
 	private class ServerAssociationListener implements AssociationListener {
 
-		private final Logger logger = Logger.getLogger(ServerAssociationListener.class);
+		private final Logger logger = LoggerFactory.getLogger(ServerAssociationListener.class);
 
 		/*
 		 * (non-Javadoc)

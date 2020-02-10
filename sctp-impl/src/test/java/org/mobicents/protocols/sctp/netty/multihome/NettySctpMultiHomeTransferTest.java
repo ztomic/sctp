@@ -20,11 +20,15 @@
 
 package org.mobicents.protocols.sctp.netty.multihome;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import io.netty.buffer.Unpooled;
 import javolution.util.FastList;
 
-import org.apache.log4j.Logger;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
@@ -33,9 +37,8 @@ import org.mobicents.protocols.sctp.SctpTransferTest;
 import org.mobicents.protocols.sctp.netty.NettyAssociationImpl;
 import org.mobicents.protocols.sctp.netty.NettySctpManagementImpl;
 import org.mobicents.protocols.sctp.netty.NettyServerImpl;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * <p>
@@ -88,11 +91,11 @@ public class NettySctpMultiHomeTransferTest {
     private FastList<String> clientMessage = null;
     private FastList<String> serverMessage = null;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() throws Exception {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() throws Exception {
     }
 
@@ -133,7 +136,11 @@ public class NettySctpMultiHomeTransferTest {
      * Simple test that creates Client and Server Association, exchanges data
      * and brings down association. Finally removes the Associations and Server
      */
-    @Test(groups = { "functional", "sctp-multihome" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("sctp-multihome")
+    })
     public void testDataTransferSctp() throws Exception {
 
         // Testing only is sctp is enabled
@@ -181,7 +188,7 @@ public class NettySctpMultiHomeTransferTest {
     }
 
     private class ClientAssociationListener implements AssociationListener {
-        private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+        private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
         
         private LoadGenerator loadGenerator = null;
 
@@ -312,7 +319,7 @@ public class NettySctpMultiHomeTransferTest {
     }
 
     private class ServerAssociationListener implements AssociationListener {
-        private final Logger logger = Logger.getLogger(ServerAssociationListener.class);
+        private final Logger logger = LoggerFactory.getLogger(ServerAssociationListener.class);
         private LoadGenerator loadGenerator = null;
 
         /*

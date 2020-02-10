@@ -22,16 +22,20 @@
 
 package org.mobicents.protocols.sctp;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import io.netty.buffer.Unpooled;
 
 import java.util.Arrays;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
-import org.testng.annotations.*;
 
 /**
  * @author nosach kostiantyn
@@ -76,11 +80,11 @@ public class ModifyAssociationTest {
 	private byte[] clientMessage;
 	private byte[] serverMessage;
 
-	@BeforeClass
+	@BeforeAll
 	public static void setUpClass() throws Exception {
 	}
 
-	@AfterClass
+	@AfterAll
 	public static void tearDownClass() throws Exception {
 	}
 
@@ -114,7 +118,11 @@ public class ModifyAssociationTest {
 		this.management.stop();
 	}
 
-	@Test(groups = { "functional", "sctp" })
+	@Test
+	@Tags({
+			@Tag("functional"),
+			@Tag("sctp")
+	})
     public void testModifyServerAndAssociationSctp() throws Exception {
 
         if (SctpTransferTest.checkSctpEnabled())
@@ -125,7 +133,11 @@ public class ModifyAssociationTest {
      * Simple test that creates Client and Server Association, exchanges data
      * and brings down association. Finally removes the Associations and Server
      */
-    @Test(groups = { "functional", "tcp" })
+    @Test
+	@Tags({
+			@Tag("functional"),
+			@Tag("tcp")
+	})
     public void testModifyServerAndAssociationTcp() throws Exception {
 
         this.testModifyServerAndAssociation(IpChannelType.TCP, SERVER_PORT2, CLIENT_PORT2);
@@ -189,7 +201,11 @@ public class ModifyAssociationTest {
 		this.tearDown();
 	}
 
-    @Test(groups = { "functional", "sctp" })
+    @Test
+	@Tags({
+			@Tag("functional"),
+			@Tag("sctp")
+	})
     public void testModifyServerAndClientAssociationsSctp() throws Exception {
 
         if (SctpTransferTest.checkSctpEnabled())
@@ -200,7 +216,11 @@ public class ModifyAssociationTest {
      * Simple test that creates Client and Server Association, exchanges data
      * and brings down association. Finally removes the Associations and Server
      */
-    @Test(groups = { "functional", "tcp" })
+    @Test
+	@Tags({
+			@Tag("functional"),
+			@Tag("tcp")
+	})
     public void testModifyServerAndClientAssociationsTcp() throws Exception {
 
         this.testModifyServerAndClientAssociations(IpChannelType.TCP, SERVER_PORT4, CLIENT_PORT4);

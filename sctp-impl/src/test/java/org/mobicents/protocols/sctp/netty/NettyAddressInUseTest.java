@@ -22,22 +22,24 @@
 
 package org.mobicents.protocols.sctp.netty;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.channels.ServerSocketChannel;
 
-import org.apache.log4j.Logger;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
 import org.mobicents.protocols.sctp.SctpTransferTest;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.sun.nio.sctp.SctpServerChannel;
 
@@ -70,11 +72,11 @@ public class NettyAddressInUseTest {
     private volatile boolean clientAssocDown = false;
     private volatile boolean serverAssocDown = false;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() throws Exception {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() throws Exception {
     }
 
@@ -112,7 +114,11 @@ public class NettyAddressInUseTest {
      * Simple test that creates Client and Server Association, exchanges data
      * and brings down association. Finally removes the Associations and Server
      */
-    @Test(groups = { "functional", "sctp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("sctp")
+    })
     public void testAddressInUseSctp() throws Exception {
 
         if (SctpTransferTest.checkSctpEnabled())
@@ -123,7 +129,11 @@ public class NettyAddressInUseTest {
      * Simple test that creates Client and Server Association, exchanges data
      * and brings down association. Finally removes the Associations and Server
      */
-    @Test(groups = { "functional", "tcp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("tcš")
+    })
     public void testAddressInUseTcp() throws Exception {
 
         this.testAddressInUseByProtocol(IpChannelType.TCP);
@@ -217,7 +227,7 @@ public class NettyAddressInUseTest {
     
     private class ClientAssociationListener implements AssociationListener {
         
-        private final Logger logger = Logger.getLogger(ClientAssociationListener.class);
+        private final Logger logger = LoggerFactory.getLogger(ClientAssociationListener.class);
 
         /*
          * (non-Javadoc)
@@ -295,7 +305,7 @@ public class NettyAddressInUseTest {
 
     private class ServerAssociationListener implements AssociationListener {
 
-        private final Logger logger = Logger.getLogger(ServerAssociationListener.class);
+        private final Logger logger = LoggerFactory.getLogger(ServerAssociationListener.class);
 
         /*
          * (non-Javadoc)

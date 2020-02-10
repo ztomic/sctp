@@ -20,24 +20,22 @@
 
 package org.mobicents.protocols.sctp.netty;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.Test;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.PayloadData;
 import org.mobicents.protocols.api.Server;
 import org.mobicents.protocols.sctp.SctpTransferTest;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 /**
  * @author amit bhayani
@@ -53,11 +51,11 @@ public class NettyManagementTest {
     private static final String SERVER_ASSOCIATION_NAME = "serverAssociation";
     private static final String CLIENT_ASSOCIATION_NAME = "clientAssociation";
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() throws Exception {
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() throws Exception {
     }
 
@@ -75,7 +73,11 @@ public class NettyManagementTest {
      * 
      * @throws Exception
      */
-    @Test(groups = { "functional", "sctp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("sctp")
+    })
     public void testServerSctp() throws Exception {
         
         if (SctpTransferTest.checkSctpEnabled())
@@ -88,7 +90,11 @@ public class NettyManagementTest {
      * 
      * @throws Exception
      */
-    @Test(groups = { "functional", "tcp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("tcp")
+    })
     public void testServerTcp() throws Exception {
 
         this.testServerByProtocol(IpChannelType.TCP);
@@ -147,14 +153,22 @@ public class NettyManagementTest {
 
     }
 
-    @Test(groups = { "functional", "sctp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("sctp")
+    })
     public void testAssociationSctp() throws Exception {
         
         if (SctpTransferTest.checkSctpEnabled())
             this.testAssociationByProtocol(IpChannelType.SCTP);
     }
 
-    @Test(groups = { "functional", "tcp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("tcp")
+    })
     public void testAssociationTcp() throws Exception {
 
         this.testAssociationByProtocol(IpChannelType.TCP);
@@ -213,14 +227,22 @@ public class NettyManagementTest {
     }
     
 
-    @Test(groups = { "functional", "sctp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("sctp")
+    })
     public void testStopAssociationSctp() throws Exception {
         
         if (SctpTransferTest.checkSctpEnabled())
             this.testStopAssociationByProtocol(IpChannelType.SCTP);
     }
 
-    @Test(groups = { "functional", "tcp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("tcp")
+    })
     public void testStopAssociationTcp() throws Exception {
 
         this.testStopAssociationByProtocol(IpChannelType.TCP);
@@ -341,7 +363,11 @@ public class NettyManagementTest {
         }
     }
 
-    @Test(groups = { "functional", "sctp" })
+    @Test
+    @Tags({
+            @Tag("functional"),
+            @Tag("tcp")
+    })
     public void testSctpStackParameters() throws Exception {
 
         // TODO: revive this test when we introduce of parameters persistense 

@@ -42,7 +42,6 @@ import javolution.xml.XMLObjectReader;
 import javolution.xml.XMLObjectWriter;
 import javolution.xml.stream.XMLStreamException;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationType;
 import org.mobicents.protocols.api.CongestionListener;
@@ -54,6 +53,8 @@ import org.mobicents.protocols.api.ServerListener;
 
 import com.sun.nio.sctp.SctpStandardSocketOptions;
 import com.sun.nio.sctp.SctpStandardSocketOptions.InitMaxStreams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:amit.bhayani@telestax.com">Amit Bhayani</a>
@@ -61,7 +62,7 @@ import com.sun.nio.sctp.SctpStandardSocketOptions.InitMaxStreams;
  */
 public class NettySctpManagementImpl implements Management {
 
-    private static final Logger logger = Logger.getLogger(NettySctpManagementImpl.class);
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
 
     private static final String SCTP_PERSIST_DIR_KEY = "sctp.persist.dir";
     private static final String USER_DIR_KEY = "user.dir";

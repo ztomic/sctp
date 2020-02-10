@@ -42,7 +42,6 @@ import java.util.concurrent.TimeUnit;
 import javolution.xml.XMLFormat;
 import javolution.xml.stream.XMLStreamException;
 
-import org.apache.log4j.Logger;
 import org.mobicents.protocols.api.Association;
 import org.mobicents.protocols.api.AssociationListener;
 import org.mobicents.protocols.api.AssociationType;
@@ -50,6 +49,8 @@ import org.mobicents.protocols.api.CongestionListener;
 import org.mobicents.protocols.api.IpChannelType;
 import org.mobicents.protocols.api.ManagementEventListener;
 import org.mobicents.protocols.api.PayloadData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author <a href="mailto:amit.bhayani@telestax.com">Amit Bhayani</a>
@@ -57,7 +58,7 @@ import org.mobicents.protocols.api.PayloadData;
  */
 public class NettyAssociationImpl implements Association {
 
-    protected static final Logger logger = Logger.getLogger(NettyAssociationImpl.class.getName());
+    protected static final Logger logger = LoggerFactory.getLogger(NettyAssociationImpl.class);
 
     private static final String NAME = "name";
     private static final String SERVER_NAME = "serverName";
