@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>restcomm-sctp-docs-sources</artifactId>
-	<name>Restcomm :: SCTP :: Docs :: Sources :: ${pom.artifactId}</name>
+	<name>Restcomm :: SCTP :: Docs :: Sources :: ${project.artifactId}</name>
 	<properties>
 
 	</properties>

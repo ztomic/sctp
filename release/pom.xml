@@ -13,7 +13,7 @@
 
   	<version>2.22</version>
 
-	<name>Restcomm :: Release :: ${pom.artifactId}</name>
+	<name>Restcomm :: Release :: ${project.artifactId}</name>
 	<profiles>
 		<profile>
 			<id>release</id>
