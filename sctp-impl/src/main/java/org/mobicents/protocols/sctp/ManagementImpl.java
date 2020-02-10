@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 
 import javolution.text.TextBuilder;
@@ -303,13 +304,20 @@ public class ManagementImpl implements Management {
 				// If not single thread model we create worker threads
 				this.executorServices = new ExecutorService[this.workerThreads];
 				for (int i = 0; i < this.workerThreads; i++) {
-					this.executorServices[i] = Executors.newSingleThreadExecutor();
+					final int finalI = i;
+					ThreadFactory threadFactory = new ThreadFactory() {
+						@Override
+						public Thread newThread(Runnable r) {
+							return new Thread(r, getName() + "-handler-" + finalI);
+						}
+					};
+					this.executorServices[i] = Executors.newSingleThreadExecutor(threadFactory);
 				}
 			}
 			this.selectorThread = new SelectorThread(this.socketSelector, this);
 			this.selectorThread.setStarted(true);
 
-			(new Thread(this.selectorThread)).start();
+			new Thread(this.selectorThread, getName() + "-SelectorThread").start();
 
 			this.started = true;
 
