@@ -25,7 +25,6 @@ package org.mobicents.protocols.sctp;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.Unpooled;
-import io.netty.util.ReferenceCountUtil;
 
 import java.io.IOException;
 import java.net.InetAddress;
