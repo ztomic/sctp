@@ -22,7 +22,7 @@
 		<commons.version>1.0.0.CR1</commons.version>
 		<restcomm.tools.mavenplugin.eclipse.version>1.0.1.FINAL</restcomm.tools.mavenplugin.eclipse.version>
 
-		<revision>2.2.0-NTH-SNAPSHOT</revision>
+		<revision>2.2.0-NTH</revision>
 	</properties>
 	<modules>
 		<module>sctp-api</module>
