@@ -22,18 +22,16 @@
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>sctp-api</artifactId>
-			<version>${project.version}</version>
+			<version>${revision}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.netty</groupId>
 			<artifactId>netty-all</artifactId>
-			<version>${netty.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
